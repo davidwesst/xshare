@@ -1,5 +1,7 @@
 use clap::{Parser, Subcommand};
 
+mod commands;
+
 #[derive(Parser)]
 #[command(name = "xshare")]
 #[command(author = "David Wesst <david@cocobkostudios.com>")]
@@ -28,17 +30,8 @@ fn main() {
 
 pub fn run_command(cli: Cli) -> String {
     match cli.command {
-        Some(Commands::Hello { name }) => say_hello(name),
+        Some(Commands::Hello { name }) => commands::hello::say_hello(name),
         None => "No command provided. Use --help to see available commands.".to_string(),
-    }
-}
-
-pub fn say_hello(name: Option<String>) -> String {
-    match name {
-        Some(name_value) => format!("Hello {}! Thank you for using XShare.", name_value),
-        None => {
-            "Hello there! I don't know your name, but I know you are amazing because you are using XShare.".to_string()
-        }
     }
 }
 
