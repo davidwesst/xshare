@@ -8,6 +8,10 @@ mod commands;
 #[command(version = "0.1.0")]
 #[command(about = "A CLI tool to help share and crosspost blog posts.", long_about = None)]
 pub struct Cli {
+    #[arg()]
+    /// Path to the folder containing the post and related post contents.
+    post_path: String,
+
     #[command(subcommand)]
     command: Option<Commands>,
 }
