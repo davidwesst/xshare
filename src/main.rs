@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use std::file;
 
 mod commands;
 
@@ -39,3 +40,25 @@ pub fn run_command(cli: Cli) -> String {
     }
 }
 
+pub fn validate_post_path(path: &str) -> bool {
+    return false;
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+    //use tempfile::tempdir;
+
+    #[test]
+    fn test_validate_post_path_returns_false_if_path_does_not_exist() {
+        // arrange
+        let does_not_exist_path = "/does/not/exist/";
+
+        // act
+        let result = validate_post_path(&does_not_exist_path);
+
+        // assert
+        assert_eq!(result, false);
+    }
+}
